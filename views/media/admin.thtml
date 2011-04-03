@@ -1,0 +1,31 @@
+<a href="/media/edit">Add New Image</a>
+<div id="content">
+<? $day='';
+foreach($results as $result)
+{
+$stime = $result[0]['UNIX_TIMESTAMP(created)'];
+$tday = date('d',$stime);
+if($day != $tday )
+{
+$day = $tday;
+echo '<h1>'.date('F, d Y',$stime).'</h1>';
+}
+
+?>
+<span><a href="/media/edit/<?echo $result['Media']['id'];?>">
+<img src="/t/<?echo $result['Media']['id']?>" alt="<?echo $result['Media']['title'];?>" style="width:100px;height:75px" />
+</a></span>
+<?
+}
+?>
+</div>
+<p><a href="javascript:changeColor(0);">Black</a>/<a
+ href="javascript:changeColor(1);">White</a>
+</p>
+<script type="text/javascript">
+$(document).ready(function() {
+// put all your jQuery goodness in here.
+bg = readCookie('bg')
+if(bg) changeColor(bg);
+});
+</script>

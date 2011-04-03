@@ -1,0 +1,121 @@
+<style type="text/css">
+body {font-family:arial;}
+
+a { text-decoration:none;}
+a:hover { text-decoration:underline;}
+.hide {visibility:collapse;}
+.gallery img { border:0; margin-right:5px;}
+.gallery ul:hover .hide { visibility:visible;}
+.gallery ul { float:left;list-style:none;padding: 0 0px 0 0;margin: 0}
+.gallery {float:left;}
+.gallery span {float:left;position:absolute;}
+.gallery span:hover p {visibility:visible;max-width:200px;color:#fff;background-color:#000;}
+
+.gallery span p {visibility:hidden;white-space:no-wrap;margin:0 0 0 0; padding: 0 0 0 0;}
+.gallery h1 {font-size:1em;line-height:1.2em;margin:0;position:relative;}
+
+</style>
+
+<h1>Welcome <?echo $username;?></h1>
+
+<h2>Galleries</h2>
+
+<p><? echo $html->link('Create Gallery','/galleries/create');?></p>
+<script type="text/javascript">
+Event.observe(window, 'load', init, false);
+
+function init(){
+	makeEditable('title');
+}
+
+</script>
+<!--<p><span id="title">edit in place?</span></p>-->
+
+<?
+// gallery info
+echo $html->image('information.png');;
+echo $html->image('sound.png')."1"; // music/sound
+echo $html->image('film.png')."3"; // video television.png
+echo $html->image('page_white_text.png')."2"; // text
+echo $html->image('picture.png')."20"; // picture
+// voting
+echo "<br>";
+echo $html->image('thumb_up.png').'Up';
+echo $html->image('exclamation.png').'Report';
+echo $html->image('flag_red.png').'Report';
+echo $html->image('thumb_down.png').'Down';
+echo "<br>";
+// options
+echo $html->image('delete.png')."Delete<br>";; // delete
+echo $html->image('group.png')."Shared<br>"; // share?
+echo $html->image('lock.png')."Private<br>"; // private
+//print_r($galleries);
+
+foreach($galleries as $gallery)
+{
+	print_r($gallery['Gallery']);
+	echo "<br>";
+	print_r($gallery['Media'][0]);
+	echo "<br> ";
+	
+}exit;
+foreach($gallery as $gal)
+{
+if(!isset($gal['Media'][0]['id'])) $gal['Media'][0]['id'] = '0';
+/*
+	
+	echo '<span style="float:left;height:220px;line-height:1em;">';
+	//echo '<img alt="no image" style="max-height:180px" width="200" src="/media/download/'.$gal['Media'][0]['id'].'"/>';
+	echo '<br><small>';
+	echo $html->link($gal['Gallery']['title'],'/galleries/view/'.$gal['Gallery']['id']);
+	echo '<br>Share | Rename | Delete';
+	echo '</small></span>';*/
+	?>
+	<div class="gallery">
+<h1><?echo $html->link($gal['Gallery']['title'],'/galleries/view/'.$gal['Gallery']['id']);?></h1>
+<span><?echo $html->image('information.png');?><p>
+<?echo $html->image('picture.png');?>1241231<br>
+<?echo $html->image('film.png');?>12<br>
+<?echo $html->image('sound.png');?>6<br>
+<?echo $html->image('page_white_text.png');?>2
+</p></span>
+<?echo '<img alt="no image" style="height:120px" width="150" src="/media/download/'.$gal['Media'][0]['id'].'"/>';?>
+<ul>
+<li><a href="#"><?echo $html->image('lock.png');?>Private</a></li>
+
+<li class="hide"><a href="#"><?echo $html->image('group.png');?>Shared</a></li>
+</ul>
+</div>
+<?
+}
+?>
+
+<h2 style="clear:both;">Media</h2>
+<!--<p><? echo $html->link('Upload File','/media/add');?></p>-->
+<!--<div id="media_list">
+	<form  enctype="multipart/form-data" method="post">
+	<?php 
+	echo $form->file('Media.File');
+	print $ajax->submit('Add task', array('url' => 'add', 'update'=>'media_list'));
+	?>
+	</form>
+</div>-->
+<form action="/media/add" enctype="multipart/form-data" method="post">
+    <?php echo $form->file('File'); ?>
+    <?php echo $form->submit('Upload'); ?>
+</form>
+
+<?
+//print_r($media);
+foreach($media as $med)
+{
+//print_r($gal);
+	echo '<span style="float:left;height:220px;line-height:1em;">';
+	//echo '<img style="max-height:180px" width="200" src="/media/download/'.$med['Media']['id'].'" alt="'.$med['Media']['name'].'"/>';
+	echo '<br><small>';
+	echo $html->link($med['Media']['name'],'/media/view/'.$med['Media']['id']);
+	echo '<br>Share | Move | Delete</small>';
+	echo '</span>';
+}
+?>
+

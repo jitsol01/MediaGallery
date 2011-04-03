@@ -1,0 +1,42 @@
+<?php echo '<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="http://coolpictur.es/sitemap.xsl"?>';?>
+
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/09/sitemap.xsd"	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<? foreach($results as $result) { ?>
+   <url>
+      <loc>http://images.usefulzero.com/s/<?echo $result['Media']['slug'];?>/</loc>
+      <lastmod><?echo date("c",strtotime($result['Media']['modified']));?></lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+<? } ?>
+   <url>
+      <loc>http://images.usefulzero.com/</loc>
+      <changefreq>daily</changefreq>
+      <priority>1</priority>
+   </url>
+   <url>
+      <loc>http://images.usefulzero.com/top100/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.4</priority>
+   </url>
+   <url>
+      <loc>http://images.usefulzero.com/popular/</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.4</priority>
+   </url>
+   <url>
+      <loc>http://images.usefulzero.com/popular/today</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>http://images.usefulzero.com/popular/week</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>http://images.usefulzero.com/popular/alltime</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.4</priority>
+   </url>
+   </urlset>

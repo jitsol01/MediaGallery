@@ -1,0 +1,31 @@
+<?
+echo $html->link('New Image','/media/create').' | '.$html->link('View All Images','/media/viewall').' | '.$html->link('View Public Images','/media/viewpublic');
+if(empty($media))
+{
+$media['id'] = 0;
+$media['title'] = "";
+$media['description'] = "";
+$media['public'] = 0;
+
+}
+$media['tags'] = "disabled";
+?>
+
+<form action="/media/create<? if($media['id']>0) echo '/'.$media['id']; ?>" enctype="multipart/form-data" method="post">
+<?php echo $form->hidden('Media.id', array('value'=>$media['id']));?>
+    <?php echo $form->input('Media.title',array('value'=>$media['title'])); ?>
+    <?php echo $form->textarea('Media.description',array('value'=>$media['description'])); ?>
+<br>    <?php echo $form->file('Media.file'); ?>
+    <?php echo $form->input('Media.url'); ?>
+    <?php echo $form->input('Media.tags',array('value'=>$media['tags'])); ?>
+    <?php echo $form->label('Media.public').$form->checkBox('Media.public',array('checked'=>$media['public'])); ?>
+    <?php echo $form->submit('Make Changes'); ?>
+</form>
+<?if(!empty($media))
+{
+echo '<h1>'.$html->link($media['title'],'/view/'.$media['id']).'</h1>';
+echo '<img src="/media/download/'.$media['id'].'"/>';
+}?>
+</div>
+
+

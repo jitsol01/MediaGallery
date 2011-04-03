@@ -1,0 +1,35 @@
+<div id="content">
+<h1>Using Cool Pictures</h1>
+<p>Using this site is intended to be as painless as possible. You may use both 
+the mouse and the keyboard to easily browse. There are no hidden tricks or 
+mystery links that will send you to another site. This site was made as 
+something we would want to use.</p>
+<h2>Keyboard</h2>
+<dl style="margin:0">
+<dt>Spacebar or F Key</dt>
+<dd>Next image or page</dd>
+<dt>B Key</dt>
+<dd>Previous image or page</dd>
+<dt>Z Key</dt>
+<dd>Changes the zoom of the image you are viewing</dd>
+<dt>Backspace</dt>
+<dd>Navigates to last page in your browser history</dd>
+</dl>
+<h2>Mouse</h2>
+<dl>
+<dt>Left Button</dt>
+<dd>Zoom an image in our out if its larger than the browser view</dd>
+<dt>Back Button</dt>
+<dd>Navigate to the last page in browser history</dd>
+<dt>Middle Button</dt>
+<dd>Open a link in a new tab</dd>
+<dt>Ctrl+Middle Button</dt>
+<dd>Open a link in a new tab and change focus to the new tab</dd>
+</dl>
+<h1>Contact Information</h1>
+
+<h2>General questions or comments</h2>
+<?echo $html->link('useful@usefulzero.com','mailto:useful@usefulzero.com'); ?>
+<h2>Copyright Infringment</h2>
+<?echo $html->link('abuse@usefulzero.com','mailto:abuse@usefulzero.com'); ?>
+</div>

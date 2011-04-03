@@ -1,0 +1,23 @@
+<? if($logged_in) {?>
+
+<p>Hello <?echo $username;?></p>
+<p>You are userid: <?echo $id;?></p>
+<p>Last login: <?echo $last_login; ?> | Session_id: <?echo $session_id;?></p>
+<?php echo $html->link('View Users', '/users/viewall');?> | 
+<?php echo $html->link('Log Out', '/users/logout');?>
+<h1><?php echo $html->link('Add Image', '/media/edit');?></h1>
+<h1><?php echo $html->link('Admin View', '/media/admin');?></h1>
+<? } // endif logged in 
+else
+{
+?>
+<h1>You are not logged in</h1>
+<?
+
+echo $html->link('Log In', '/users/login');
+?>
+<br>
+<?
+echo $html->link('Register', '/users/register');
+}
+?>

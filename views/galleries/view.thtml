@@ -1,0 +1,20 @@
+<h1><?echo $gallery['title'];?></h1>
+<p>View: All Media | 5 Images | 1 Movies | 2 Documents | 2 Archives</p>
+<form action="/media/add/<?echo $gallery['id'];?>" enctype="multipart/form-data" method="post">
+    <?php echo $form->file('Media.File'); ?>
+    <?php echo $form->submit('Upload'); ?>
+</form>
+<form action="/galleries/addurl/<?echo $gallery['id'];?>" method="post">
+    <?php echo $form->input('Gallery.url'); ?>
+    <?php echo $form->submit('Grab Images'); ?>
+</form>
+<?
+//print_r($medias);
+foreach($medias as $media)
+{
+	echo '<img alt="'.$media['name'].'" src="/media/download/'.$media['id'].'">';
+}
+?>
+</div>
+
+

@@ -1,0 +1,20 @@
+<? print '<?xml version="1.0" encoding="UTF-8"?>'."\n"; ?>
+<rss version="2.0">
+	<channel>
+	<title>Cool Pictures</title>
+	<link>http://images.usefulzero.com/</link>
+	<language>en-us</language>
+	<description>Cool Pictures RSS Feed</description>
+	
+	<?	print '<pubDate>'.$results[0]['Media']['created'].'</pubDate>'."\n";
+		foreach($results as $result)
+		{
+			print '<item>'."\n";
+			print '<title>'.$result['Media']['title'].'</title>'."\n";
+			print '<link>http://images.usefulzero.com/s/'.$result['Media']['slug'].'/</link>'."\n";
+			print '<description><![CDATA[<a href="http://images.usefulzero.com/s/'.$result['Media']['slug'].'/" title="Picture of '.$result['Media']['title'].'"><img alt="'.$result['Media']['title'].'" src="http://images.usefulzero.com/t/'.$result['Media']['id'].'"/></a><br>'.$result['Media']['description'].']]></description>'."\n";
+			print '<pubDate>'.$result['Media']['created'].'</pubDate>'."\n";
+			print '<guid>http://images.usefulzero.com/v/'.$result['Media']['id'].'/</guid>'."\n";
+			print '</item>'."\n";
+		} ?>
+		</channel></rss>

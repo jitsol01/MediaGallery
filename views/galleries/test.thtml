@@ -1,0 +1,7 @@
+<form onSubmit="return false;">
+	<?php 
+	echo $form->file('File');
+	print $ajax->submit('Add task', array('url' => 'add', 'update'=>'media_todo'));
+	?>
+</form>
+<? print_r($data);foreach ($data as $p) { echo '<br>'; print_r($p); } ?>

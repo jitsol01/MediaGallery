@@ -1,0 +1,47 @@
+<div id="content" class="thumbnails">
+<h1>Most Viewed</h1>
+<h1><? echo $html->link('Today','/popular/today',array('title'=>'Most viewed pictures today'));?></h1><?
+foreach($today as $result)
+{
+?><span><a href="/s/<?echo $result['Media']['slug'];?>/" title="Picture of <?echo $result['Media']['title'];?>"><img src="/t/<?echo $result['Media']['id']?>" alt="<?echo $result['Media']['title'];?>" /></a></span><?
+}
+?>
+<h1><? echo $html->link('This Week','/popular/week',array('title'=>'Most viewed pictures this week'));?></h1><?
+foreach($week as $result)
+{
+?><span><a href="/s/<?echo $result['Media']['slug'];?>/" title="Picture of <?echo $result['Media']['title'];?>"><img src="/t/<?echo $result['Media']['id']?>" alt="<?echo $result['Media']['title'];?>" /></a></span><?
+}
+?>
+<h1><? echo $html->link('All Time','/popular/alltime',array('title'=>'Most viewed pictures of all time'));?></h1><?
+foreach($alltime as $result)
+{
+?><span><a href="/s/<?echo $result['Media']['slug'];?>/" title="Picture of <?echo $result['Media']['title'];?>"><img src="/t/<?echo $result['Media']['id']?>" alt="<?echo $result['Media']['title'];?>" /></a></span><?
+}
+?>
+
+<br style="clear:both" />
+</div>
+<p><a href="javascript:changeColor(0);">Black</a>/<a
+ href="javascript:changeColor(1);">White</a>
+</p>
+<script type="text/javascript">
+/* <![CDATA[ */
+google_ad_client = "pub-5855617601310149";
+//CoolPictures 728x90, created 12/4/07
+google_ad_slot = "7158028253";
+google_ad_width = 728;
+google_ad_height = 90;
+/* ]]> */
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+$(document).ready(function() {
+// put all your jQuery goodness in here.
+bg = readCookie('bg')
+if(bg) changeColor(bg);
+});
+/* ]]> */
+</script>

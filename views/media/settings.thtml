@@ -1,0 +1,18 @@
+
+<form action="/media/add/<?echo 1;?>" enctype="multipart/form-data" method="post">
+    <?php echo $form->input('Media.title'); ?>
+    <?php echo $form->input('Media.description'); ?>
+    <?php echo $form->file('Media.File'); ?>
+    <?php echo $form->input('Media.url'); ?>
+    <?php echo $form->submit('Make Changes'); ?>
+</form>
+<?
+//print_r($medias);
+foreach($medias as $media)
+{
+	echo '<img alt="'.$media['name'].'" src="/media/download/'.$media['id'].'">';
+}
+?>
+</div>
+
+

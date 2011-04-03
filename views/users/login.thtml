@@ -1,0 +1,12 @@
+<h1>User Login</h1>
+<?echo $form->create("User", array("action"=>"login"));?>
+<fieldset>
+<legend>Please enter your username and password</legend>
+<?
+echo $form->input("username", array("size" => "20"));
+echo $form->input("password", array("size" => "20"));
+?>
+<input type="submit" value="Log In" />
+</fieldset>
+<?echo $form->end();?>
+<p>Don't have an account? <?echo $html->link('Register','/users/register');?>.</p>

@@ -1,0 +1,10 @@
+<table>
+<?php
+echo $html->tableHeaders(array_keys($allusers[0]['User']));
+
+foreach($allusers as $user)
+{
+	echo $html->tableCells($user['User'], array('bgcolor' => '#ddd'));
+}
+?>
+</table>

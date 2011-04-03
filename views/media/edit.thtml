@@ -1,0 +1,32 @@
+<?
+echo $html->link('New Image','/media/edit').' | '.$html->link('View All Images','/media/admin');
+if(empty($media))
+{
+$media['id'] = 0;
+$media['title'] = "";
+$media['description'] = "";
+$media['public'] = 0;
+
+}
+$media['tags'] = "disabled";
+?>
+
+<form action="/media/edit<? if($media['id']>0) echo '/'.$media['id']; ?>" enctype="multipart/form-data" method="post">
+<?php echo $form->hidden('Media.id', array('value'=>$media['id']));?>
+    <?php echo $form->input('Media.title',array('value'=>$media['title'])); ?>
+    <?php echo $form->textarea('Media.description',array('value'=>$media['description'])); ?>
+<br>    <?php echo $form->file('Media.file'); ?>
+    <?php echo $form->input('Media.url'); ?>
+    <?php echo $form->input('Media.tags',array('value'=>$media['tags'])); ?>
+    <?if($media['public']==0) $check = false; else $check = true;?>
+    <?php echo $form->label('Media.public').$form->checkBox('Media.public',array('checked'=>$check)); ?>
+    <?php echo $form->submit('Make Changes'); ?>
+</form>
+<?if(!empty($media))
+{
+echo '<h1>'.$html->link($media['title'],'/view/'.$media['id']).'</h1>';
+echo '<img src="/d/'.$media['id'].'"/>';
+}?>
+<p>Copy the <a href="javascript:void(location.href='http://images.usefulzero.com/media/create?u='+location.href+'&t='+encodeURIComponent(document.title))">Add Image Bookmarklet</a> to your toolbar and click it when you want to add an image that your viewing. Add Image from HTML is not enabled currently.</p>
+
+

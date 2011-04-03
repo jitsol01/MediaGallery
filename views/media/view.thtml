@@ -1,0 +1,68 @@
+<script type="text/javascript">
+/* <![CDATA[ */
+var imgWidth = <?echo $media['width'];?>;
+function scaleImg() {
+image = document.getElementById('resizepic');
+if(image.width >= $('div#menu').width()) {image.width=$('div#menu').width()-1; image.className='zoomin';}
+else {image.width=imgWidth; image.className='zoomout';}
+if(image.width==imgWidth && image.width < $('div#menu').width()) { image.className='';}
+}
+/* ]]> */
+</script>
+<h1><?echo $media['title'];?></h1>
+<img onload="scaleImg()" onclick="scaleImg()" id="resizepic" src="/d/<? echo $media['id'];?>" alt="<?echo $media['title'];?>" />
+<p><? echo $media['description'];?></p>
+<!--<p style="display:none;">Tags: <a href="/tags/">Disabled</a>, <a
+ href="/tags/background">background</a></p>-->
+
+<div id="ratings">
+<p><input type="submit" name="rateup" value="Love it" id="rateup" /> <input type="submit" name="ratedown" value="Hate it" id="ratedown" /></p>
+</div>
+
+<?if(isset($next)) {?>
+<a href="/s/<?echo $next['slug'];?>" title="Previous: Picture of <?echo $next['title'];?>"><img
+ style="border: 0px;"
+ src="/t/<?echo $next['id'];?>" alt="<?echo $next['title'];?>" /></a>
+<? } ?>
+
+<?if(isset($prev)) {?>
+<a href="/s/<?echo $prev['slug'];?>/" title="Next: Picture of <?echo $prev['title'];?>"><img style="border: 0px;"
+ src="/t/<?echo $prev['id'];?>" alt="<?echo $prev['title'];?>" /></a>
+<? } ?>
+<p>
+<a href="javascript:changeColor(0);">Black</a>/<a
+ href="javascript:changeColor(1);">White</a>
+</p>
+<p>Hint: Press the space bar for easier browsing.</p>
+<script src="/js/jquery.hotkeys.js" type="text/javascript"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+$(document).ready(function() { // document ready
+<?if(isset($prev)) {?>
+jQuery.hotkeys.add('space',function (){window.location='/s/<?echo $prev['slug'];?>/'});
+jQuery.hotkeys.add('f',function (){window.location='/s/<?echo $prev['slug'];?>/'});
+<?}?>
+<?if(isset($next)) {?>
+jQuery.hotkeys.add('b',function (){window.location='/s/<?echo $next['slug'];?>/'});
+<?}?>
+jQuery.hotkeys.add('z',function (){scaleImg();});
+bg = readCookie('bg');
+if(bg) changeColor(bg);
+	$("#rateup").click(function() {
+         $.get('/rate/love/<? echo $media['id'];?>');
+         $("#ratings").html("<p>Thanks for voting</p>");
+         return true;
+     });
+	$("#ratedown").click(function() {
+         $.get('/rate/hate/<? echo $media['id'];?>');
+         $("#ratings").html("<p>Thanks for voting</p>");
+         return true;
+     });
+//	$("#resizepic").click(function(e){
+//		var x = e.pageX - this.offsetLeft;
+//		var y = e.pageY - this.offsetTop;
+//		$('#warning').html(x +', '+ y);
+//	});
+});
+/* ]]> */
+</script>

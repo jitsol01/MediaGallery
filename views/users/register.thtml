@@ -1,0 +1,25 @@
+<h1>Account Creation</h1>
+<? echo $form->create("User", array("action"=>"register"));?>
+<fieldset>
+<legend>Fill out the form to register a new account</legend>
+
+
+<? echo $form->input("username", array('size' => "20")); ?>
+
+
+
+<? echo $form->input("password", array('size' => "20")); ?>
+
+
+
+<? echo $form->input("email", array('size' => "40",'maxlength' => "255")); ?>
+
+
+
+<div class="input"><label for="UserBetacode">Betacode</label><input name="data[betacode]" id="UserBetacode" type="text" size="20" value="" /></div>
+
+
+<input type="submit" value="Register" /> or <?echo $html->link('cancel','/');?> 
+</fieldset>
+<?echo $form->end();?>
+All Fields Required
